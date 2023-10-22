@@ -101,6 +101,11 @@ function updateLastBusPosition(request, response) {
         try {
           const lastLocation = JSON.parse(data);
 
+          if (!lastLocation.latitude || !lastLocation.longitude) {
+            handle400(response);
+            return;
+          }
+
           database.run(
             `INSERT INTO bus_location(id, latitude,longitude) VALUES(?, ?, ?)
             ON CONFLICT(id) DO UPDATE SET
@@ -109,10 +114,10 @@ function updateLastBusPosition(request, response) {
               timestemp=CURRENT_TIMESTAMP`,
             [
               1,
-              lastLocation.lat,
-              lastLocation.lng,
-              lastLocation.lat,
-              lastLocation.lng,
+              lastLocation.latitude,
+              lastLocation.longitude,
+              lastLocation.latitude,
+              lastLocation.longitude,
             ]
           );
 
