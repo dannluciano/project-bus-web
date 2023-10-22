@@ -149,15 +149,14 @@ const server = http.createServer((request, response) => {
 
   if (request.method == "GET" && request.url == "/") {
     getIndex(request, response);
-  }
-  if (request.method == "GET" && request.url.startsWith("/static/")) {
+  } else if (request.method == "GET" && request.url.startsWith("/static/")) {
     getStatic(request, response);
-  }
-  if (request.method == "GET" && request.url == "/get_last_position") {
+  } else if  (request.method == "GET" && request.url == "/get_last_position") {
     getLastBusPosition(request, response);
-  }
-  if (request.method == "POST" && request.url == "/update_last_position") {
+  } else if (request.method == "POST" && request.url == "/update_last_position") {
     updateLastBusPosition(request, response);
+  } else {
+    handleStatic404(response);
   }
 
   const endTime = new Date();
