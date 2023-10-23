@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BusWeb</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
@@ -443,13 +444,7 @@
         }
         info.addTo(map)
 
-        setInterval(function () {
-            var now = new Date()
-            info.update(now)
-        }, 1000)
-
-
-        setTimeout(function () {
+        function getLastBusPosition() {
             fetch('/get_last_position')
                 .then(function (response) {
                     return response.json()
@@ -458,8 +453,19 @@
                 }).catch(function (error) {
                     console.error(error)
                 })
+        }
 
-        }, 5000)
+        setInterval(function () {
+            var now = new Date()
+            info.update(now)
+        }, 1000)
+
+
+        setInterval(function () {
+            getLastBusPosition()
+        }, 2000)
+
+        getLastBusPosition()
 
     </script>
 
