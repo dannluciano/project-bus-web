@@ -449,7 +449,9 @@
                 .then(function (response) {
                     return response.json()
                 }).then(function (busLocation) {
-                    bus.setLatLng(L.latLng(busLocation.lat, busLocation.lng))
+                    const position = L.latLng(busLocation.lat, busLocation.lng)
+                    bus.setLatLng(position)
+                    map.flyTo(position)
                 }).catch(function (error) {
                     console.error(error)
                 })
