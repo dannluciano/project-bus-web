@@ -449,7 +449,7 @@
         }, 1000)
 
 
-        setInterval(function () {
+        setTimeout(function () {
             fetch('/get_last_position')
                 .then(function (response) {
                     return response.json()
