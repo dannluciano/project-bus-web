@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
+
+
+
+:root {
+    --purple: rgb(106, 0, 255);
+    --teal-blue: rgb(34, 166, 179);
+    --orange: rgb(255, 135, 73);
+    --light-gray: rgb(240, 240, 240);
+    --dark-gray: rgb(51, 51, 51);
+    --green: rgb(0, 153, 51);
+    --blue: rgb(51, 102, 204);
+    --light-shadow: rgba(0, 0, 0, 0.2);
+    --orange-hover: rgb(255, 102, 0);
+    --red: rgb(60, 56, 56);
+    --pink: rgb(255, 105, 180);
+    --turquoise: rgb(64, 224, 208);
+    --brown: rgb(139, 69, 19);
+    --light-blue: rgb(173, 216, 230);
+    --violet: rgb(238, 130, 238);
+    --dark-green: rgb(0, 128, 0);
+    --light-red: rgb(255, 99, 71);
+    --gold: rgb(255, 215, 0);
+    --silver: rgb(192, 192, 192);
+    --black: rgb(0, 0, 0);
+    --white: rgb(255, 255, 255);
+}
+
+
+
+
+
+body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: 'Raleway', sans-serif;
+    user-select: none;
+}
+
+#warn {
+    position: fixed;
+    bottom: 20px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    z-index: 9999; 
+    color: #030303;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.424);
+    
+}
+#map {
+    height: 100vh;
+}
+
+.info {
+    background-color: white;
+    border-radius: 1em;
+    padding: 0 1em;
+}
+
+#btn-cam {
+    position: fixed;
+    bottom: 50px;
+    left: 20px;
+    z-index: 9999; 
+    background-color: rgb(248, 239, 254);
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.424);
+    border: none;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+  }
+  
+#btn-cam:active{
+    transform: scale(0.87);
+}  
+
+  #btn-cam img {
+    width: 60px; 
+    height: auto;
+  }
