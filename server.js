@@ -101,7 +101,7 @@ function updateLastBusPosition(request, response) {
         try {
           const lastLocation = JSON.parse(data);
 
-          if (!lastLocation.latitude || !lastLocation.longitude) {
+          if (!lastLocation.la || !lastLocation.lo) {
             handle400(response);
             return;
           }
@@ -114,10 +114,10 @@ function updateLastBusPosition(request, response) {
               timestemp=CURRENT_TIMESTAMP`,
             [
               1,
-              lastLocation.latitude,
-              lastLocation.longitude,
-              lastLocation.latitude,
-              lastLocation.longitude,
+              lastLocation.la,
+              lastLocation.lo,
+              lastLocation.la,
+              lastLocation.lo,
             ]
           );
 
