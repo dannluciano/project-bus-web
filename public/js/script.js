@@ -473,7 +473,7 @@ function getLastBusPosition() {
     .then(function (busLocation) {
       const position = L.latLng(busLocation.lat, busLocation.lng);
       bus.setLatLng(position);
-      lastUpdatedTime = new Date(busLocation.timestemp);
+      lastUpdatedTime = new Date(busLocation.timestemp + "-00");
       if (cameraMode == "bus") {
         map.flyTo(position);
       }
