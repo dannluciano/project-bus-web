@@ -40,14 +40,15 @@ body {
 
 #warn {
     position: fixed;
-    bottom: 20px; 
-    left: 50%; 
-    transform: translateX(-50%); 
-    z-index: 9999; 
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
     color: #030303;
     text-shadow: 0 4px 8px rgba(0, 0, 0, 0.424);
-    
+
 }
+
 #map {
     height: 100vh;
 }
@@ -62,20 +63,34 @@ body {
     position: fixed;
     bottom: 50px;
     left: 20px;
-    z-index: 9999; 
+    z-index: 9999;
     background-color: rgb(248, 239, 254);
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.424);
     border: none;
     cursor: pointer;
     transition: 0.2s ease-in-out;
-  }
-  
-#btn-cam:active{
-    transform: scale(0.87);
-}  
+}
 
-  #btn-cam img {
-    width: 60px; 
+#btn-cam:active {
+    transform: scale(0.87);
+}
+
+#btn-cam img {
+    width: 60px;
     height: auto;
-  }
+}
+
+.alert {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: red;
+    background: var(--orange);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    color: rgba(255, 255, 255, 0.8);
+    left: 50%;
+    transform: translate(-50%, 0%);
+}

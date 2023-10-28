@@ -1,103 +1,110 @@
-var points = []
+const points = [];
 
-var cameraMode = "bus"; 
-var map = L.map('map').setView([-9.0461518, -42.6935003], 13);
-let userMarker = null
+let cameraMode = "bus";
+const map = L.map("map").setView([-9.0461518, -42.6935003], 13);
+let userMarker = null;
 
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  attribution:
+    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map);
 
-
 const warn = (txt) => {
-    const warning = document.createElement("div");
-    warning.id = "warn";
-    warning.textContent = txt; 
-    document.body.appendChild(warning);
+  const warning = document.createElement("div");
+  warning.id = "warn";
+  warning.textContent = txt;
+  document.body.appendChild(warning);
 
-    warning.style.opacity = 0;
+  warning.style.opacity = 0;
 
-    let opacity = 0;
-    const fadeInterval = setInterval(() => {
-        opacity += 0.05; 
-        warning.style.opacity = opacity;
-        if (opacity >= 1) {
-            clearInterval(fadeInterval);
-            setTimeout(() => {
-                warning.style.opacity = 0;
+  let opacity = 0;
+  const fadeInterval = setInterval(() => {
+    opacity += 0.05;
+    warning.style.opacity = opacity;
+    if (opacity >= 1) {
+      clearInterval(fadeInterval);
+      setTimeout(() => {
+        warning.style.opacity = 0;
 
-                setTimeout(() => {
-                    document.body.removeChild(warning);
-                }, 2000); 
-            }, 2000); 
-        }
-    }, 10); 
-
-
-}
-
+        setTimeout(() => {
+          document.body.removeChild(warning);
+        }, 2000);
+      }, 2000);
+    }
+  }, 10);
+};
 
 const ifpiIcon = L.icon({
-    iconUrl: '/static/img/ifpi_icon.png',
-    iconSize: [32, 32]
+  iconUrl: "/static/img/ifpi_icon.png",
+  iconSize: [32, 32],
 });
 
-const ifpiLocation = [-9.0461518, -42.6935003]
+const ifpiLocation = [-9.0461518, -42.6935003];
 L.marker(ifpiLocation, {
-    icon: ifpiIcon
-}).addTo(map)
-    .bindPopup('IFPI-SRN')
+  icon: ifpiIcon,
+})
+  .addTo(map)
+  .bindPopup("IFPI-SRN");
 //.openPopup();
 
 const busStopIcon = L.icon({
-    iconUrl: '/static/img/bus_stop_icon.png',
-    iconSize: [32, 32]
+  iconUrl: "/static/img/bus_stop_icon.png",
+  iconSize: [32, 32],
 });
 
 L.marker([-9.0335513, -42.6871689], {
-    icon: busStopIcon
-}).addTo(map)
-    .bindPopup('Onças')
+  icon: busStopIcon,
+})
+  .addTo(map)
+  .bindPopup("Onças");
 L.marker([-9.023149, -42.688531], {
-    icon: busStopIcon
-}).addTo(map)
-    .bindPopup('Posto Mania')
+  icon: busStopIcon,
+})
+  .addTo(map)
+  .bindPopup("Posto Mania");
 L.marker([-9.016256, -42.688344], {
-    icon: busStopIcon
-}).addTo(map)
-    .bindPopup('Ponte Umbelina')
+  icon: busStopIcon,
+})
+  .addTo(map)
+  .bindPopup("Ponte Umbelina");
 L.marker([-9.012648, -42.690216], {
-    icon: busStopIcon
-}).addTo(map)
-    .bindPopup('UESPI')
+  icon: busStopIcon,
+})
+  .addTo(map)
+  .bindPopup("UESPI");
 L.marker([-9.010449, -42.69204], {
-    icon: busStopIcon
-}).addTo(map)
-    .bindPopup('Nobre Power')
+  icon: busStopIcon,
+})
+  .addTo(map)
+  .bindPopup("Nobre Power");
 L.marker([-9.006528, -42.698171], {
-    icon: busStopIcon
-}).addTo(map)
-    .bindPopup('Colégio Edson Ferreira')
+  icon: busStopIcon,
+})
+  .addTo(map)
+  .bindPopup("Colégio Edson Ferreira");
 L.marker([-9.013374, -42.700639], {
-    icon: busStopIcon
-}).addTo(map)
-    .bindPopup('Clube 5 Estrelas')
+  icon: busStopIcon,
+})
+  .addTo(map)
+  .bindPopup("Clube 5 Estrelas");
 L.marker([-9.015562, -42.697152], {
-    icon: busStopIcon
-}).addTo(map)
-    .bindPopup('Padaria R. Costa')
+  icon: busStopIcon,
+})
+  .addTo(map)
+  .bindPopup("Padaria R. Costa");
 L.marker([-9.0191228, -42.6963493], {
-    icon: busStopIcon
-}).addTo(map)
-    .bindPopup('SAMU')
+  icon: busStopIcon,
+})
+  .addTo(map)
+  .bindPopup("SAMU");
 L.marker([-9.031387, -42.693429], {
-    icon: busStopIcon
-}).addTo(map)
-    .bindPopup('Cruzamento (Ingazeira - UNIVASF)')
+  icon: busStopIcon,
+})
+  .addTo(map)
+  .bindPopup("Cruzamento (Ingazeira - UNIVASF)");
 
-
-
-const router = L.polyline([
+const router = L.polyline(
+  [
     [-9.04602, -42.693273],
     [-9.046041, -42.693198],
     [-9.046073, -42.693118],
@@ -396,123 +403,138 @@ const router = L.polyline([
     [-9.045114, -42.692699],
     [-9.045463, -42.692828],
     [-9.045485, -42.692844],
-    [-9.045463, -42.693037]
-], { color: '#646464' }).addTo(map);
+    [-9.045463, -42.693037],
+  ],
+  { color: "#646464" }
+).addTo(map);
 
+const bounds = router.getBounds();
+map.fitBounds(bounds);
 
 function onMapClick(e) {
-    points.push(e.latlng)
+  points.push(e.latlng);
 }
 
-map.on('click', onMapClick);
+map.on("click", onMapClick);
 
 const busIcon = L.icon({
-    iconUrl: '/static/img/bus_icon.png',
-    iconSize: [52, 52]
+  iconUrl: "/static/img/bus_icon.png",
+  iconSize: [52, 52],
 });
 
-let busPosition = ifpiLocation
+let busPosition = ifpiLocation;
 const bus = L.marker(busPosition, {
-    icon: busIcon,
-    zIndexOffset: 100
-}).addTo(map)
+  icon: busIcon,
+  zIndexOffset: 100,
+}).addTo(map);
 
 const personIcon = L.icon({
-    iconUrl: '/static/img/person_icon.png',
-    iconSize: [48, 48]
+  iconUrl: "/static/img/person_icon.png",
+  iconSize: [48, 48],
 });
 
-map.on('locationfound', function (e) {
-    if (userMarker) {
-        map.removeLayer(userMarker);
-    };
+map.on("locationfound", function (e) {
+  if (userMarker) {
+    map.removeLayer(userMarker);
+  }
 
-    userMarker = L.marker(e.latlng, {
-        icon: personIcon
-    }).bindTooltip('Você')
-        .addTo(map)
-        if (cameraMode == 'user'){
-            map.flyTo(e.latlng,15);
-            map.dragging.disable();
-            
-        };
-        
-})
-map.locate({ watch: true })
+  userMarker = L.marker(e.latlng, {
+    icon: personIcon,
+  })
+    .bindTooltip("Você")
+    .addTo(map);
+  if (cameraMode == "user") {
+    map.flyTo(e.latlng, 15);
+    map.dragging.disable();
+  }
+});
+map.locate({ watch: true });
 
-const info = L.control()
+const info = L.control();
 info.onAdd = function (map) {
-    this._div = L.DomUtil.create('div', 'info')
-    return this._div
-}
+  this._div = L.DomUtil.create("div", "info");
+  return this._div;
+};
 
 info.update = function (time) {
-    this._div.innerHTML = '<h4><a href="/static/sobre.html">Onibus IFPI</a></h4>' +
-        '<p>Hora: ' +
-        time.toLocaleTimeString() +
-        '</p>'
-}
-info.addTo(map)
+  this._div.innerHTML =
+    '<h4><a href="/static/sobre.html">Onibus IFPI</a></h4>' +
+    "<p>Hora: " +
+    time.toLocaleTimeString() +
+    "</p>";
+};
+info.addTo(map);
 
 function getLastBusPosition() {
-    fetch('/get_last_position')
-        .then(function (response) {
-            return response.json()
-        }).then(function (busLocation) {
-            const position = L.latLng(busLocation.lat, busLocation.lng)
-            bus.setLatLng(position)
-            if (cameraMode == "bus"){
-                map.flyTo(position);
-            };
-            
-        }).catch(function (error) {
-            console.error(error)
-        })
+  fetch("/get_last_position")
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (busLocation) {
+      const position = L.latLng(busLocation.lat, busLocation.lng);
+      bus.setLatLng(position);
+      lastUpdatedTime = new Date(busLocation.timestemp);
+      if (cameraMode == "bus") {
+        map.flyTo(position);
+      }
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
 }
 
+let lastUpdatedTime = new Date();
 
+const alert = leaflet.control();
+alert.onAdd = function (map) {
+  alert._div = leaflet.DomUtil.create("div", "alert");
+  alert._div.innerHTML =
+    "<strong>Atenção!</strong><br>" +
+    "A ultima localização do onibus foi detectada a mais de 5 minutos.";
+  return this._div;
+};
+alert.update = function (now, lastUpdatedTime) {
+  if (now - lastUpdatedTime > 5 * 60 * 1000) {
+    this.addTo(map);
+  } else {
+    this.remove();
+  }
+};
 
 setInterval(function () {
-    var now = new Date()
-    info.update(now)
-}, 1000)
-
+  var now = new Date();
+  info.update(now);
+  alert.update(now, lastUpdatedTime);
+}, 1000);
 
 setInterval(function () {
-    getLastBusPosition()
-}, 2000)
+  getLastBusPosition();
+}, 2500);
 
-getLastBusPosition()
+getLastBusPosition();
 
-document.addEventListener('DOMContentLoaded', function() {
-    map.dragging.disable();
-    const btnCam = document.getElementById('btn-cam');
-    const btnImg = btnCam.getElementsByTagName('img')[0];
-    btnCam.addEventListener('click',() =>{
-        if (cameraMode == 'bus'){
-            cameraMode = 'user';
-            btnImg.src = '/static/img/cam_user.png';
-            warn('Camera mudou para usuario!');
-            map.dragging.enable();
-            
-        }
-        else if (cameraMode == 'user' ){
-            cameraMode = 'off';
-            btnImg.src = '/static/img/cam_off.png';
-            warn('Camera Livre!');
-            map.dragging.enable();
-        }
-        else{
-            cameraMode = 'bus';
-            btnImg.src = '/static/img/cam_bus.png';
-            warn('Camera mudou para ônibus');
-            getLastBusPosition();
-            map.dragging.disable();
-            map.setZoom(17);
-
-        };
-    
-    
-    });
-            
+document.addEventListener("DOMContentLoaded", function () {
+  map.dragging.disable();
+  const btnCam = document.getElementById("btn-cam");
+  const btnImg = btnCam.getElementsByTagName("img")[0];
+  btnCam.addEventListener("click", () => {
+    if (cameraMode == "bus") {
+      cameraMode = "user";
+      btnImg.src = "/static/img/cam_user.png";
+      warn("Camera mudou para usuario!");
+      map.dragging.enable();
+    } else if (cameraMode == "user") {
+      cameraMode = "off";
+      btnImg.src = "/static/img/cam_off.png";
+      warn("Camera Livre!");
+      map.dragging.enable();
+    } else {
+      cameraMode = "bus";
+      btnImg.src = "/static/img/cam_bus.png";
+      warn("Camera mudou para ônibus");
+      getLastBusPosition();
+      map.dragging.disable();
+      map.setZoom(17);
+    }
+  });
 });
