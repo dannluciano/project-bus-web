@@ -481,7 +481,7 @@ map.on("click", onMapClick);
 
 const busIcon = L.icon({
   iconUrl: "/static/img/bus_icon.png",
-  iconSize: [52, 52],
+  iconSize: [66, 66],
 });
 
 let busPosition = ifpiLocation;
