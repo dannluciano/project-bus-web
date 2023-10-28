@@ -11,10 +11,34 @@
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
         <link rel="stylesheet" href="/static/css/main.css">
 </head>
-
 <body>
+
+    <div id="notice">
+        <div class="notice-content">
+            <ion-icon  id="icon-notice"></ion-icon>
+            <div class="message-notice">
+                <span id="title-notice"></span>
+                <span class="content-notice"></span>
+            </div>
+        </div>
+        <ion-icon name="close-outline" id="close-notice"></ion-icon>
+        <div class="progress-notice"></div>
+    </div>
+
+
+    <div class="popup-container">
+        <div class="popup-box">
+            <h1 id="title"></h1>
+            <p id="txt"></p>    
+            <button class="close-btn"></button>
+        </div>
+    </div>
+
     <div id="map"></div>
     <button id="btn-cam"><img src="/static/img/cam_bus.png" alt="cam-mode"></button>
     <script src="/static/js/script.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
 </body>
 </html>

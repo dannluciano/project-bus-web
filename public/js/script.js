@@ -9,30 +9,92 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map);
 
-const warn = (txt) => {
-  const warning = document.createElement("div");
-  warning.id = "warn";
-  warning.textContent = txt;
-  document.body.appendChild(warning);
 
-  warning.style.opacity = 0;
+const alertPopUp = (titleTxt,bodyTxt,btnTxt) =>{
+  const popupContainer = document.querySelector('.popup-container');
+  const closeBtn = document.querySelector('.close-btn');
+  const txt = document.getElementById('txt')
+  const title = document.getElementById('title')
+  closeBtn.textContent = btnTxt
+  txt.textContent  = bodyTxt
+  title.textContent  = titleTxt
+  popupContainer.classList.add('active');
+  closeBtn.onclick = () => {
+      popupContainer.classList.remove('active');
+  }
+}
 
-  let opacity = 0;
-  const fadeInterval = setInterval(() => {
-    opacity += 0.05;
-    warning.style.opacity = opacity;
-    if (opacity >= 1) {
-      clearInterval(fadeInterval);
-      setTimeout(() => {
-        warning.style.opacity = 0;
 
-        setTimeout(() => {
-          document.body.removeChild(warning);
-        }, 2000);
-      }, 2000);
-    }
-  }, 10);
-};
+
+const notice = (titleTxt,bodyTxt,type) =>{
+
+  const notice = document.getElementById("notice");
+  const closeIcon = document.querySelector("#close-notice");
+  const progress = document.querySelector("#notice .progress-notice");
+  const title = document.getElementById('title-notice');
+  const txt = document.querySelector('.content-notice');
+  var noticeIcon = document.querySelector('#icon-notice');
+  
+
+  var color = null
+  let timer1, timer2;
+  type = type.toLowerCase()
+  var icon = null
+  switch (type){
+    case 'warn':
+      color = '#f3df28'
+      noticeIcon.name = 'warning-outline'
+      break;
+    case 'ok':
+      color = '#28f3a5'
+      noticeIcon.name = 'checkmark-done-outline'
+      break
+    case 'error':
+      color = '#f44064'
+      noticeIcon.name = 'bug-outline'
+      break
+    default:
+      return console.error('Uma notificação do tipo warn não possui um valor válido.');
+      break
+  }
+  const style = document.createElement('style');
+  style.type = 'text/css';
+  style.innerHTML = `#notice .progress-notice:before { background-color: ${color}; }`;
+
+  document.head.appendChild(style);
+    
+    notice.style.borderLeft = `6px solid ${color}`;
+    noticeIcon.style.backgroundColor = color;
+    title.textContent = titleTxt
+    txt.textContent = bodyTxt
+    
+
+  notice.classList.add("active");
+  progress.classList.add("active");
+
+  timer1 = setTimeout(() => {
+    notice.classList.remove("active");
+  }, 3000); 
+
+  timer2 = setTimeout(() => {
+    progress.classList.remove("active");
+  }, 3300);
+
+  closeIcon.addEventListener("click", () => {
+    notice.classList.remove("active");
+  
+    setTimeout(() => {
+      progress.classList.remove("active");
+    }, 30);
+    clearTimeout(timer1);
+    clearTimeout(timer2);
+  });
+
+  closeIcon.removeEventListener("click",() => {
+    notice.classList.remove("active")});
+}
+
+
 
 const ifpiIcon = L.icon({
   iconUrl: "/static/img/ifpi_icon.png",
@@ -514,6 +576,12 @@ setInterval(function () {
 getLastBusPosition();
 
 document.addEventListener("DOMContentLoaded", function () {
+
+  setTimeout(() => { //pop up inicial
+    alertPopUp("Aviso importante",'Estamos em BETA portanto bugs podem ocorrer a qualquer momento.','Entendi!');
+  }, 800);
+  
+  
   map.dragging.disable();
   const btnCam = document.getElementById("btn-cam");
   const btnImg = btnCam.getElementsByTagName("img")[0];
@@ -521,17 +589,17 @@ document.addEventListener("DOMContentLoaded", function () {
     if (cameraMode == "bus") {
       cameraMode = "user";
       btnImg.src = "/static/img/cam_user.png";
-      warn("Camera mudou para usuario!");
       map.dragging.enable();
+      notice('Impressionante!','Câmera fixada no usúario!','ok')
     } else if (cameraMode == "user") {
       cameraMode = "off";
       btnImg.src = "/static/img/cam_off.png";
-      warn("Camera Livre!");
+      notice('Cuidado!','Câmera em modo livre.','warn')
       map.dragging.enable();
     } else {
       cameraMode = "bus";
       btnImg.src = "/static/img/cam_bus.png";
-      warn("Camera mudou para ônibus");
+      notice('Perfeito!','Câmera fixada no ônibus!','ok')
       getLastBusPosition();
       map.dragging.disable();
       map.setZoom(17);
