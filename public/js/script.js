@@ -576,6 +576,11 @@ setInterval(function () {
 getLastBusPosition();
 
 document.addEventListener("DOMContentLoaded", function () {
+  var loader = document.getElementById("load-div");
+  loader.style.opacity = "0";
+  setTimeout(function() {
+    loader.remove();
+  }, 6000); 
 
   setTimeout(() => { //pop up inicial
     alertPopUp("Aviso importante",'Estamos em BETA portanto bugs podem ocorrer a qualquer momento.','Entendi!');

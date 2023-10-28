@@ -240,3 +240,60 @@ body {
 #notice.active ~ button {
     pointer-events: none;
 }
+
+#load-div {
+    z-index: 99999;
+    pointer-events: none; 
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    color: aliceblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: linear-gradient(90deg, #fffef4 15%, #e7ffdc 50%, #fffef4 75%);
+    background-size: 200% 100%;
+    animation: loading 1.6s infinite;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 20px;
+    transition: opacity 1s; 
+    opacity: 1; 
+}
+
+#load-content {
+    text-align: center;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+}
+
+#load-content img {
+    z-index: 999999;
+    max-width: 30%;
+    display: block;
+    margin: 0 auto;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
