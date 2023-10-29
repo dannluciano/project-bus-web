@@ -1,3 +1,5 @@
+
+
 const points = [];
 
 let cameraMode = "bus";
@@ -9,21 +11,38 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map);
 
+const alertPopUp = (titleTxt, bodyTxt, btnTxt) => {
+  const popupContainer = document.createElement('div');
+  popupContainer.className = 'popup-container';
+  const popupBox = document.createElement('div');
+  popupBox.className = 'popup-box';
+  const title = document.createElement('h1');
+  title.id = 'title';
+  const text = document.createElement('p');
+  text.id = 'txt';
+  const closeButton = document.createElement('button');
+  closeButton.className = 'close-btn';
+  closeButton.textContent = btnTxt;
 
-const alertPopUp = (titleTxt,bodyTxt,btnTxt) =>{
-  const popupContainer = document.querySelector('.popup-container');
-  const closeBtn = document.querySelector('.close-btn');
-  const txt = document.getElementById('txt')
-  const title = document.getElementById('title')
-  closeBtn.textContent = btnTxt
-  txt.textContent  = bodyTxt
-  title.textContent  = titleTxt
-  popupContainer.classList.add('active');
-  closeBtn.onclick = () => {
+
+  popupBox.appendChild(title);
+  popupBox.appendChild(text);
+  popupBox.appendChild(closeButton);
+  popupContainer.appendChild(popupBox);
+
+  document.body.insertBefore(popupContainer, document.body.firstChild);
+
+  document.getElementById('title').textContent = titleTxt;
+  document.getElementById('txt').textContent = bodyTxt;
+
+  setTimeout(() => {
+    popupContainer.classList.add('active');
+    closeButton.addEventListener('click', () => {
       popupContainer.classList.remove('active');
-  }
-}
-
+      document.body.removeChild(popupContainer);
+    });
+  }, 400);
+};
 
 
 const notice = (titleTxt,bodyTxt,type) =>{
@@ -57,6 +76,8 @@ const notice = (titleTxt,bodyTxt,type) =>{
       return console.error('Uma notificação do tipo warn não possui um valor válido.');
       break
   }
+
+
   const style = document.createElement('style');
   style.type = 'text/css';
   style.innerHTML = `#notice .progress-notice:before { background-color: ${color}; }`;
@@ -91,10 +112,10 @@ const notice = (titleTxt,bodyTxt,type) =>{
   });
 
   closeIcon.removeEventListener("click",() => {
-    notice.classList.remove("active")});
+    notice.classList.remove("active")
+  });
+  
 }
-
-
 
 const ifpiIcon = L.icon({
   iconUrl: "/static/img/ifpi_icon.png",
@@ -581,6 +602,7 @@ document.addEventListener("DOMContentLoaded", function () {
   setTimeout(function() {
     loader.remove();
   }, 6000); 
+
 
   setTimeout(() => { //pop up inicial
     alertPopUp("Aviso importante",'Estamos em BETA portanto bugs podem ocorrer a qualquer momento.','Entendi!');
