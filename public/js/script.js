@@ -1,7 +1,6 @@
 
-
 const points = [];
-
+getPoints()
 let cameraMode = "bus";
 const map = L.map("map").setView([-9.0461518, -42.6935003], 13);
 let userMarker = null;
@@ -11,7 +10,65 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map);
 
+const spawnCardPoint = (pointObj) =>{
+  let NamePoint = pointObj.name
+  let descriptionPoint = pointObj.description
+  let photoPoint = pointObj.photo
+  let seatPoint = pointObj.seat
+  let colorPoint = null
+  let stars = 0
+
+  switch (seatPoint.toLowerCase){
+
+    case "bom":
+      colorPoint = '#1B9FE5'
+      stars = 4
+      
+      break
+    case "perfeito":
+      colorPoint = '#1BE571'
+      stars = 5
+      break
+    case "regular":
+      colorPoint = '#E5D91B'
+      stars = 3
+      break
+    case "ruim":
+      colorPoint = '#FC6969'
+      stars = 2
+      break
+    case "péssimo":
+      colorPoint = '#EA0000'
+      stars = 1
+      break
+      
+  }
+
+  const card = document.getElementById('card');
+  const closebtn = document.getElementById('exit-card');
+  const titleCard = document.getElementById('point-name');
+  const imgCard = document.getElementById('img-card');
+  const seatCard = document.getElementById('seat-card');
+  const descriptionCard = document.getElementById('card-description-text')
+
+  titleCard.textContent = NamePoint;
+  descriptionCard.textContent = descriptionPoint;
+  seatCard.textContent = seatPoint;
+  imgCard.style.backgroundImage = `url(${photoPoint})`;
+
+
+  card.classList.toggle('active');
+  closebtn.addEventListener('click', () =>{
+    card.classList.remove('active')
+  
+})
+
+}
+
+
+
 const alertPopUp = (titleTxt, bodyTxt, btnTxt) => {
+
   const popupContainer = document.createElement('div');
   popupContainer.className = 'popup-container';
   const popupBox = document.createElement('div');
@@ -135,56 +192,6 @@ const busStopIcon = L.icon({
   iconSize: [32, 32],
 });
 
-L.marker([-9.0335513, -42.6871689], {
-  icon: busStopIcon,
-})
-  .addTo(map)
-  .bindPopup("Onças");
-L.marker([-9.023149, -42.688531], {
-  icon: busStopIcon,
-})
-  .addTo(map)
-  .bindPopup("Posto Mania");
-L.marker([-9.016256, -42.688344], {
-  icon: busStopIcon,
-})
-  .addTo(map)
-  .bindPopup("Ponte Umbelina");
-L.marker([-9.012648, -42.690216], {
-  icon: busStopIcon,
-})
-  .addTo(map)
-  .bindPopup("UESPI");
-L.marker([-9.010449, -42.69204], {
-  icon: busStopIcon,
-})
-  .addTo(map)
-  .bindPopup("Nobre Power");
-L.marker([-9.006528, -42.698171], {
-  icon: busStopIcon,
-})
-  .addTo(map)
-  .bindPopup("Colégio Edson Ferreira");
-L.marker([-9.013374, -42.700639], {
-  icon: busStopIcon,
-})
-  .addTo(map)
-  .bindPopup("Clube 5 Estrelas");
-L.marker([-9.015562, -42.697152], {
-  icon: busStopIcon,
-})
-  .addTo(map)
-  .bindPopup("Padaria R. Costa");
-L.marker([-9.0191228, -42.6963493], {
-  icon: busStopIcon,
-})
-  .addTo(map)
-  .bindPopup("SAMU");
-L.marker([-9.031387, -42.693429], {
-  icon: busStopIcon,
-})
-  .addTo(map)
-  .bindPopup("Cruzamento (Ingazeira - UNIVASF)");
 
 const router = L.polyline(
   [
@@ -548,6 +555,35 @@ info.update = function (time) {
 };
 info.addTo(map);
 
+function getPoints(){
+  fetch("/get_points")
+  .then(response => {
+      if (response.status === 200) {
+          return response.json();
+      }
+  })
+  .then(data => {
+    let obj = JSON.parse(data);
+    let points = obj.points
+    points.forEach(point => {
+      console.log(point)
+      const { name, coordinates } = point;
+      const { lat, long } = coordinates;
+
+      const marker = L.marker([lat, long], {
+        icon: busStopIcon,
+      });
+
+      marker.addEventListener('click', () =>{
+        spawnCardPoint(point)
+      })
+      marker.addTo(map);});
+  })
+  .catch(error => {
+      console.error(error);
+  });
+}
+
 function getLastBusPosition() {
   fetch("/get_last_position")
     .then(function (response) {
@@ -594,8 +630,7 @@ setInterval(function () {
   getLastBusPosition();
 }, 2500);
 
-getLastBusPosition();
-
+getLastBusPosition()
 document.addEventListener("DOMContentLoaded", function () {
   var loader = document.getElementById("load-div");
   loader.style.opacity = "0";

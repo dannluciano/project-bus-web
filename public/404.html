@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Not found</title>
+</head>
+<body>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+        
+        body {
+            background-color: #F2EFE9;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #030303;
+            font-family: "Poppins", sans-serif;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        .container {
+            text-align: center;
+        }
+        
+        .container img {
+            max-width: 100%;
+            height: auto;
+            width: 200px;
+            filter: sepia();
+            opacity: 0.5;
+        }
+        
+        h1 {
+            font-size: 2rem;
+        }
+        
+        p {
+            font-size: 1rem;
+        }
+        
+        button {
+            background-color: #00ff95;
+            color: #fff;
+            padding: 10px 20px;
+            border: 1px solid #0303038e;
+            border-radius: 5px;
+            margin: 10px;
+            width: 100%;
+            height: 30%;
+            cursor: pointer;
+            border-radius: 10px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.122); 
+            font-family: "Poppins", sans-serif;   
+            font-size: 100%;
+            transition: 0.5s ease-in-out;
+        }
+
+        button:hover{
+            background-color: #39ffad;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #ff0059;
+        }
+
+        a:hover{
+            text-decoration: underline;
+        }
+        
+        </style>
+        
+        <div class="container">
+            <img src="/static/img/404_bus.png" alt="bus">
+            <h1>404</h1>
+            <p>Acho que essa não era a pagina que voce está procurando.</p>
+        </div>
+        
+        <div class="container">
+            <button id="return">Retornar ao mapa</button>
+            <p>ou</p>
+            <a href="/">Reporte um erro a nossa equipe</a>
+        </div>
+
+<script>
+
+const returnBtn = document.getElementById('return');
+returnBtn.addEventListener('click',() =>{
+
+    window.location.href = '/'
+
+})
+
+
+</script>
+</body>
+</html>

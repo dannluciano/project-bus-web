@@ -4,18 +4,20 @@
         {"name": "Onças",
         "description": "Primeira parada do ônibus do IFPI CaSrn. Um dos pontos menos movimentados e mais tranquilos, estudantes que embarcam neste ponto sempre conseguem encontrar o ônibus vazio e pegar os melhores assentos. Porém como nem tudo são flores, este ponto só tem 1 rota pela manhã.",
         "coordinates":{
-        "lat": -9.023149,
-        "long": -42.688531},
-        "photo": "static/img/points_img/oncas.png"},
-
+        "lat": -9.0335513,
+        "long": -42.6871689},
+        "photo": "static/img/points_img/oncas.png",
+        "seat":"Perfeito"
+      },
 
 
         {"name": "Posto Mania (Galo Branco)",
         "description": "Entre os top 3 pontos mais populares, o ponto do Galo Branco é um ponto movimentado, onde muitos alunos entram no ônibus, mas geralmente sempre há assentos para todos neste ponto.",
         "coordinates":{
-        "lat": -9.016256,
-        "long": -42.688344},
-        "photo": "static/img/points_img/posto_mania.png"},
+        "lat": -9.023149,
+        "long": -42.688531},
+        "photo": "static/img/points_img/posto_mania.png",
+        "seat":"Bom" },
 
 
 
@@ -24,9 +26,10 @@
         "name": "Ponte Umbelina",
         "description": "O famoso ponto da ponte está realmente entre os mais populares; aqui, geralmente os últimos assentos são ocupados.",
         "coordinates": {
-            "lat": -9.012648,
-            "long": -42.690216},
-            "photo": "static/img/points_img/ponte_umbelina.png"
+            "lat": -9.016256,
+            "long": -42.688344},
+            "photo": "static/img/points_img/ponte_umbelina.png",
+            "seat":"Regular" 
         },
 
 
@@ -35,10 +38,11 @@
             "name": "UESPI",
             "description": "O ponto mais popular do IFPI. Neste ponto, diversos alunos se encontram para embarcar no ônibus, porém raramente o ônibus lota neste ponto.",
             "coordinates": {
-              "lat": -9.010449,
-              "long": -42.69204
+              "lat": -9.012648,
+              "long": -42.690216
             },
-            "photo": "static/img/points_img/uespi.png"
+            "photo": "static/img/points_img/uespi.png",
+            "seat":"Ruim" 
           },
 
 
@@ -47,10 +51,11 @@
             "name": "Nobre Power",
             "description": "O ponto de ônibus da Nobre Power é um ponto deveras popular, onde alunos que vêm do bairro Santa Luzia embarcam no ônibus.",
             "coordinates": {
-              "lat": -9.006528,
-              "long": -42.698171
+              "lat": -9.010449,
+              "long": -42.69204
             },
-            "photo": "static/img/points_img/nobre_power.png"
+            "photo": "static/img/points_img/nobre_power.png",
+            "seat":"Péssimo" 
           },
           
 
@@ -59,10 +64,11 @@
             "name": "Colégio Edson Ferreira",
             "description": "Localizado em frente ao Edson Ferreira, este ponto é bastante popular entre os alunos da Milonga e alguns do Santa Fé. Em dias lotados, o ônibus lota neste ponto e segue diretamente para o IFPI, enquanto os outros pontos aguardam a segunda rota.",
             "coordinates": {
-              "lat": -9.013374,
-              "long": -42.700639
+              "lat": -9.006528,
+              "long": -42.698171
             },
-            "photo": "static/img/points_img/colegio_edson_ferreira.png"
+            "photo": "static/img/points_img/colegio_edson_ferreira.png",
+            "seat":"Péssimo" 
           },
           
 
@@ -70,10 +76,11 @@
             "name": "Clube 5 Estrelas",
             "description": "O ponto do Clube 5 Estrelas é utilizado pelos alunos do Gavião e Santa Fé, e quase sempre eles têm acesso à segunda rota. Portanto, quem é deste ponto pode dormir até mais tarde. 💤",
             "coordinates": {
-              "lat": -9.015562,
-              "long": -42.697152
+              "lat": -9.013374,
+              "long": -42.700639
             },
-            "photo": "static/img/points_img/clube_5_estrelas.png"
+            "photo": "static/img/points_img/clube_5_estrelas.png",
+            "seat":"Péssimo" 
           },
           
 
@@ -82,10 +89,11 @@
             "name": "Padaria R. Costa",
             "description": "Próximo à Padaria R. Costa, os alunos aqui, além de terem acesso à segunda rota, também podem aproveitar um pão fresquinho antes de ir à escola.",
             "coordinates": {
-              "lat": -9.0191228,
-              "long": -42.6963493
+              "lat": -9.015562,
+              "long": -42.697152
             },
-            "photo": "static/img/points_img/padaria_r_costa.png"
+            "photo": "static/img/points_img/padaria_r_costa.png",
+            "seat":"Regular" 
           },
           
 
@@ -94,13 +102,13 @@
             "name": "SAMU",
             "description": "O ponto do SAMU é desfavorecido, pois quase sempre o ônibus está lotado lá em horários cheios. No entanto, os mesmos sempre têm acesso à segunda rota. Em contrapartida, eles estão próximos ao CETI, o que gera uma certa rivalidade entre eles.",
             "coordinates": {
-              "lat": -9.031387,
-              "long": -42.693429
+              "lat": -9.0191228,
+              "long": -42.6963493
             },
-            "photo": "static/img/points_img/samu.png"
+            "photo": "static/img/points_img/samu.png",
+            "seat":"Bom" 
           },
           
-
 
           {
             "name": "Cruzamento (Ingazeira - UNIVASF)",
@@ -109,7 +117,8 @@
               "lat": -9.031387,
               "long": -42.693429
             },
-            "photo": "static/img/points_img/cruzamento.png"
+            "photo": "static/img/points_img/cruzamento.png",
+            "seat":"Perfeito" 
           }
           
 

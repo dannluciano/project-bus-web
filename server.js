@@ -7,15 +7,24 @@ import configs from "./configs.js";
 
 const database = new sqlite3.Database(configs.DATABASE);
 
+
+
 database.serialize(() => {
   const schema = fs.readFileSync(configs.SCHEMA).toString();
   database.run(schema);
 });
-
 function handleStatic404(response) {
-  response.statusCode = 404;
-  response.setHeader("Content-Type", "text/plain");
-  response.end("File Not Found");
+  fs.readFile("./public/404.html", function (err, data) {
+    if (err) {
+      response.statusCode = 404;
+      response.setHeader("Content-Type", "text/plain");
+      response.end("File Not Found");
+    } else {
+      response.statusCode = 404;
+      response.setHeader("Content-Type", "text/html");
+      response.end(data);
+    }
+  });
 }
 
 function handle401(response) {
@@ -28,6 +37,20 @@ function handle400(response) {
   response.statusCode = 400;
   response.setHeader("Content-Type", "application/json");
   response.end(JSON.stringify({ msg: "Invalid Payload!" }));
+}
+
+function locatePoints(request,response){
+  const points = fs.readFileSync('./data/points.json', 'utf8');
+
+  if (points){
+    response.statusCode = 200;
+    response.setHeader("Content-Type", "application/json");
+    response.end(JSON.stringify(points));
+  }
+  else{
+    handleStatic404(response);
+    return;
+  }
 }
 
 function getIndex(request, response) {
@@ -153,6 +176,8 @@ const server = http.createServer((request, response) => {
     getStatic(request, response);
   } else if  (request.method == "GET" && request.url == "/get_last_position") {
     getLastBusPosition(request, response);
+  }  else if (request.method == "GET" && request.url == "/get_points"){
+    locatePoints(request,response)
   } else if (request.method == "POST" && request.url == "/update_last_position") {
     updateLastBusPosition(request, response);
   } else {
