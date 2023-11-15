@@ -15,8 +15,8 @@ const spawnCardPoint = (pointObj) =>{
   let descriptionPoint = pointObj.description
   let photoPoint = pointObj.photo
   let seatPoint = pointObj.seat
-  let colorPoint = null
-  let stars = 0
+  var colorPoint = null
+  var stars = 0
 
   switch (seatPoint.toLowerCase){
 
@@ -66,7 +66,6 @@ const spawnCardPoint = (pointObj) =>{
 }
 
 
-
 const alertPopUp = (titleTxt, bodyTxt, btnTxt) => {
 
   const popupContainer = document.createElement('div');
@@ -102,77 +101,6 @@ const alertPopUp = (titleTxt, bodyTxt, btnTxt) => {
 };
 
 
-const notice = (titleTxt,bodyTxt,type) =>{
-
-  const notice = document.getElementById("notice");
-  const closeIcon = document.querySelector("#close-notice");
-  const progress = document.querySelector("#notice .progress-notice");
-  const title = document.getElementById('title-notice');
-  const txt = document.querySelector('.content-notice');
-  var noticeIcon = document.querySelector('#icon-notice');
-  
-
-  var color = null
-  let timer1, timer2;
-  type = type.toLowerCase()
-  var icon = null
-  switch (type){
-    case 'warn':
-      color = '#f3df28'
-      noticeIcon.name = 'warning-outline'
-      break;
-    case 'ok':
-      color = '#28f3a5'
-      noticeIcon.name = 'checkmark-done-outline'
-      break
-    case 'error':
-      color = '#f44064'
-      noticeIcon.name = 'bug-outline'
-      break
-    default:
-      return console.error('Uma notificação do tipo warn não possui um valor válido.');
-      break
-  }
-
-
-  const style = document.createElement('style');
-  style.type = 'text/css';
-  style.innerHTML = `#notice .progress-notice:before { background-color: ${color}; }`;
-
-  document.head.appendChild(style);
-    
-    notice.style.borderLeft = `6px solid ${color}`;
-    noticeIcon.style.backgroundColor = color;
-    title.textContent = titleTxt
-    txt.textContent = bodyTxt
-    
-
-  notice.classList.add("active");
-  progress.classList.add("active");
-
-  timer1 = setTimeout(() => {
-    notice.classList.remove("active");
-  }, 3000); 
-
-  timer2 = setTimeout(() => {
-    progress.classList.remove("active");
-  }, 3300);
-
-  closeIcon.addEventListener("click", () => {
-    notice.classList.remove("active");
-  
-    setTimeout(() => {
-      progress.classList.remove("active");
-    }, 30);
-    clearTimeout(timer1);
-    clearTimeout(timer2);
-  });
-
-  closeIcon.removeEventListener("click",() => {
-    notice.classList.remove("active")
-  });
-  
-}
 
 const ifpiIcon = L.icon({
   iconUrl: "/static/img/ifpi_icon.png",
@@ -185,6 +113,7 @@ L.marker(ifpiLocation, {
 })
   .addTo(map)
   .bindPopup("IFPI-SRN");
+
 //.openPopup();
 
 const busStopIcon = L.icon({
@@ -495,11 +424,15 @@ const router = L.polyline(
     [-9.045485, -42.692844],
     [-9.045463, -42.693037],
   ],
-  { color: "#646464" }
+  {  weight: 2.5,
+    color:"#44464D"
+}
 ).addTo(map);
+
 
 const bounds = router.getBounds();
 map.fitBounds(bounds);
+
 
 function onMapClick(e) {
   points.push(e.latlng);
@@ -509,7 +442,7 @@ map.on("click", onMapClick);
 
 const busIcon = L.icon({
   iconUrl: "/static/img/bus_icon.png",
-  iconSize: [66, 66],
+  iconSize: [50, 50],
 });
 
 let busPosition = ifpiLocation;
@@ -566,7 +499,6 @@ function getPoints(){
     let obj = JSON.parse(data);
     let points = obj.points
     points.forEach(point => {
-      console.log(point)
       const { name, coordinates } = point;
       const { lat, long } = coordinates;
 
@@ -650,18 +582,15 @@ document.addEventListener("DOMContentLoaded", function () {
   btnCam.addEventListener("click", () => {
     if (cameraMode == "bus") {
       cameraMode = "user";
-      btnImg.src = "/static/img/cam_user.png";
+      btnImg.src = "/static/img/person_icon.png";
       map.dragging.enable();
-      notice('Impressionante!','Câmera fixada no usúario!','ok')
     } else if (cameraMode == "user") {
       cameraMode = "off";
-      btnImg.src = "/static/img/cam_off.png";
-      notice('Cuidado!','Câmera em modo livre.','warn')
+      btnImg.src = "/static/img/cam_icon.png";
       map.dragging.enable();
     } else {
       cameraMode = "bus";
-      btnImg.src = "/static/img/cam_bus.png";
-      notice('Perfeito!','Câmera fixada no ônibus!','ok')
+      btnImg.src = "/static/img/bus_icon.png";
       getLastBusPosition();
       map.dragging.disable();
       map.setZoom(17);

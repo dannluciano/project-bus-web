@@ -9,6 +9,7 @@
     --light-gray: rgb(240, 240, 240);
     --dark-gray: rgb(51, 51, 51);
     --green: rgb(0, 153, 51);
+    --green-soft:#28f3a5;
     --blue: rgb(51, 102, 204);
     --light-shadow: rgba(0, 0, 0, 0.2);
     --orange-hover: rgb(255, 102, 0);
@@ -62,11 +63,17 @@ body {
     left: 20px;
     z-index: 998;
     background-color: rgb(248, 239, 254);
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.424);
+    border-radius: 50%;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.294);
     border: none;
     cursor: pointer;
     transition: 0.2s ease-in-out;
+    width: 75px;
+    height: 75px;
+    border: var(--green-soft) 1px solid;
+    display: flex;
+    align-items: center;
+    justify-self: center;
 }
 
 #btn-cam:active {
@@ -74,7 +81,8 @@ body {
 }
 
 #btn-cam img {
-    width: 60px;
+    filter:grayscale(1px);
+    width: 100%;
     height: auto;
 }
 
@@ -159,96 +167,6 @@ body {
   font-weight: 500;
   font-family: "Poppins", sans-serif;
 }
-#notice {
-    min-width: 30%;
-    max-width: 90%;
-    position: absolute;
-    top: 25px;
-    right: 30px;
-    border-radius: 12px;
-    background: #fff;
-    padding: 20px 35px 20px 25px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transform: translateX(calc(100% + 30px));
-    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
-    z-index: 2000;
-}
-#notice.active {
-    transform: translateX(0%);
-}
-
-#notice .notice-content {
-    display: flex;
-    align-items: center;
-}
-
-#icon-notice{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 35px;
-    width: 35px;
-    color: #fff;
-    font-size: 20px;
-    border-radius: 50%;
-}
-.notice-content .message-notice {
-    display: flex;
-    flex-direction: column;
-    margin: 0 20px;
-}
-.message-notice #title-notice {
-    font-size: 20px;
-    font-weight: 600;
-    color: #333;
-}
-.message-notice .content-notice {
-    font-size: 20px;
-    font-weight: 400;
-    color: #666666;
-}
-#close-notice{
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    padding: 5px;
-    cursor: pointer;
-    opacity: 0.7;
-}
-
-#close-notice:hover {
-    opacity: 1;
-}
-
-#notice .progress-notice {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 3px;
-    width: 100%;
-    background: #ddd;
-    
-}
-#notice .progress-notice:before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
-}
-.progress-notice.active:before {
-    animation: progress 5s linear forwards;
-}
-@keyframes progress {
-    100% {
-        right: 100%;
-    }
-}
-#notice.active ~ button {
-    pointer-events: none;
-}
 
 #load-div {
     z-index: 99999;
@@ -310,7 +228,7 @@ body {
     top: 8px;
     position: fixed;
     width: 60%;
-    height: 90%;
+    height: 85%;
     background-color: #fffefa;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
@@ -318,10 +236,9 @@ body {
     display: flex;
     flex-direction: column;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.146);
-    justify-content: center;
+    justify-content: start;
     z-index: 99999;
     transform: scale(0);
-    overflow: hidden; 
 }
 
 #card.active {
@@ -331,7 +248,8 @@ body {
 }
   
 #point-name {
-    font-size: 30px;
+    font-size: 100%;
+    white-space:nowrap;
 }
   
 #head-card {
@@ -342,7 +260,6 @@ body {
     height: 20%;
     max-height: 20%;
 }
-  
 #exit-card {
     cursor: pointer;
     font-size: 3em;
@@ -377,6 +294,8 @@ body {
   
 #body-card {
     margin-top: 20px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
   
 #info-point {
@@ -388,6 +307,10 @@ body {
     flex: 1;
     text-align: center;
     padding: 8px;
+
+}
+#info-point{
+    display: flex;
 }
   
 #head-time-point ion-icon, #point-value-title ion-icon {
@@ -412,13 +335,12 @@ body {
     color: #030303;
 }
 @media (max-width: 768px) {
-    #card{
-        width: 95%;
-        min-height: 100%;
-        height: auto;
-        top: 0px;
-        overflow: auto;
-        overflow-x: hidden;
+    #card {
+        width: 85%;
     }
-  }
-  
+    #info-point{
+        flex-direction: column;
+    }
+      
+
+}

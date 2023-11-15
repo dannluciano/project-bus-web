@@ -31,9 +31,6 @@
             "photo": "static/img/points_img/ponte_umbelina.png",
             "seat":"Regular" 
         },
-
-
-
           {
             "name": "UESPI",
             "description": "O ponto mais popular do IFPI. Neste ponto, diversos alunos se encontram para embarcar no ônibus, porém raramente o ônibus lota neste ponto.",
@@ -83,8 +80,6 @@
             "seat":"Péssimo" 
           },
           
-
-
           {
             "name": "Padaria R. Costa",
             "description": "Próximo à Padaria R. Costa, os alunos aqui, além de terem acesso à segunda rota, também podem aproveitar um pão fresquinho antes de ir à escola.",
@@ -127,6 +122,14 @@
 
 
 
+    ],
+    "routes":[
+      {"startTime": "6:10", "endTime": "6:50"},
+      {"startTime": "6:50", "endTime": "7:30"},
+      {"startTime": "12:10", "endTime": "12:50"},
+      {"startTime": "17:10", "endTime": "17:57"},
+      {"startTime": "18:10", "endTime": "18:40"},
+      {"startTime": "22:10", "endTime": "23:00"}
     ]
 
 
