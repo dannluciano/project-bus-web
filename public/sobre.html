@@ -1,15 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.classless.min.css">
-</head>
-<body>
-    <main>
-        <h1>Sobre...</h1>
-        <a role="button" href="/">Voltar</a>
-    </main>
+    <title>BusWeb | Sobre nós</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  </head>
+<body class="bg-gradient-to-r from-green-400 to-indigo-800 ">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+    body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      transition: all 0.3s ease;
+    }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+  
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+    <section class="text-white py-20">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl font-bold mb-4">Sobre nós</h1>
+            <p class="text-lg opacity-75">Entenda quem somos e como fazemos o bus web funcionar</p>
+          </div>
+    </section>
+    
+    <section class="container mx-auto my-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div class="p-8 bg-white rounded-3xl shadow-lg" >
+                <h2 class="text-3xl font-bold mb-4">Por que BusWeb?</h2>
+                <p class="text-gray-900 text-2xl">Idealizado no campus do IFPI em São Raimundo Nonato pelo professor Dann Luciano de Menezes o BusWeb é um projeto que busca facilitar o acesso dos alunos ao ônibus escolar do IFPI através dos serviços de GPS onde a localização atual do ônibus é transmitida em tempo real através dos nossos sistemas que podem ser acessados por qualquer estudante.</p>
+            </div>
+            <div class="relative flex justify-center select-none" >
+              <img src="/static/img/about-page/ifpi-bus.jpg" alt="onibus-ifpi" class="rounded-lg max-w-2xl h-auto mb-4 ">
+              <img src="/static/img/about-page/smart-bus.png" alt="smartphone" class="absolute rounded-lg w-4/6 h-auto mb-4 top-0 right-0">
+          </div>
+          
+        </div>
+    </section>
+    <section class="bg-gradient-to-r from-red-500 to-indigo-800 py-16 ">
+      <div class="container mx-auto">
+          <h2 class="text-4xl font-normal text-center mb-8 text-white">Conheça nosso time</h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+  
+              <a href="https://github.com/dannluciano" class="p-8 bg-white rounded-lg shadow-lg transform transition-transform hover:scale-105 fade-in " >
+                  <img src="https://avatars.githubusercontent.com/u/44121?v=4" alt="Dann Luciano - Fundador" class="w-0\.5 h-32 object-cover mb-4 rounded-full shadow-lg ">
+                  <h3 class="text-xl font-bold mb-2">Dann Luciano</h3>
+                  <p class="text-gray-700">Desenvolvedor e Fundador</p>
+              </a>
+  
+              <a href="https://github.com" class="p-8 bg-white rounded-lg shadow-lg transform transition-transform hover:scale-105 fade-in">
+                  <img src="https://avatars.githubusercontent.com/u/115284250?v=4" alt="Pedro Luis - Desenvolvedor" class="w-0\.5 h-32 object-cover mb-4 rounded-full shadow-lg ">
+                  <h3 class="text-xl font-bold mb-2">Pedro Luis</h3>
+                  <p class="text-gray-700">Desenvolvedor e Contribuidor</p>
+              </a>
+          </div>
+      </div>
+  </section>
+
+  <section class="container mx-auto my-16 fade-in" >
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8"  >
+        <div class="p-8 text-white">
+            <h2 class="text-3xl font-bold mb-4">Pespectivas Futuras</h2>
+            <p class="text-2xl">Esperamos impactar cada vez mais estudantes de forma positiva tornando mais fácil a noção sob localização do ônibus ajudando-os em suas vidas acadêmicas.</p>
+        </div>
+
+      <div class="p-8 text-white">
+        <h2 class="text-3xl font-bold mb-4">Expansão</h2>
+        <p class="text-2xl">Com o passar o tempo e com o sucesso do BusWeb, esperamos poder expandi-ló para outras plataformas e outros campus.</p>
+    </div>
+      </section>
+
+        <section class="text-center text-white fade-in">
+            <h2 class="text-4xl  mb-4">Campus em que o BusWeb já esta disponivel</h2>
+            <div class="mb-4">
+                <p class="text-4xl font-semibold mb-2 text-green-100">São Raimundo Nonato</p>
+                <p class="text-gray-900 text-2xl">Disponivel desde 2023.</p>
+            </div>
+          </section>
+
+    <section class="flex items-center justify-center h-screen">
+        <div class="text-center">
+            <h2 class="text-4xl font-bold mb-4">Utilize agora gratuitamente</h2>
+            <p class="text-gray-900 mb-8">Veja a localizção do ônibus em tempo real.</p>
+            <a href="/" class="bg-white  text-black font-semibold py-4 px-8 rounded-full  ">Testar BusWeb</a>
+        </div>
+    </section>      
+
+    <footer class=" text-white py-8 ">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2023 BusWeb. #MadeInIFPICASRN</p>
+            <p>Thanks to OpenStreetMap and Leaflet.</p>
+        </div>
+    </footer>
+    <script>
+        window.addEventListener('scroll', () => {
+          document.querySelectorAll('.fade-in').forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top >= 0 && rect.left >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && rect.right <= (window.innerWidth || document.documentElement.clientWidth)) {
+              el.classList.add('visible');
+            }
+          });
+        });
+      
+        document.addEventListener('DOMContentLoaded', () => {
+          window.dispatchEvent(new Event('scroll'));
+        });
+      </script>
+      
+      
 </body>
 </html>
