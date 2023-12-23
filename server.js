@@ -1,4 +1,4 @@
-import http from "node:http";
+import http, { get } from "node:http";
 import { Buffer } from "node:buffer";
 import sqlite3 from "sqlite3";
 import fs from "node:fs";
@@ -51,6 +51,32 @@ function locatePoints(request,response){
     handleStatic404(response);
     return;
   }
+}
+
+function getTerms(request, response) {
+  fs.readFile("./public/terms.html", function (err, data) {
+    if (err) {
+      handleStatic404(response);
+      return;
+    }
+    response.statusCode = 200;
+    response.setHeader("Content-Type", "text/html");
+    response.end(data);
+  });
+}
+
+
+function getAbout(request, response) {
+
+  fs.readFile("./public/about.html", function (err, data) {
+    if (err) {
+      handleStatic404(response);
+      return;
+    }
+    response.statusCode = 200;
+    response.setHeader("Content-Type", "text/html");
+    response.end(data);
+  });
 }
 
 function getIndex(request, response) {
@@ -162,6 +188,7 @@ function updateLastBusPosition(request, response) {
   });
 }
 
+
 const server = http.createServer((request, response) => {
   const startTime = new Date();
   
@@ -172,6 +199,10 @@ const server = http.createServer((request, response) => {
 
   if (request.method == "GET" && request.url == "/") {
     getIndex(request, response);
+  } else if (request.method == "GET" && request.url.startsWith("/about")) {
+    getAbout(request, response);
+  } else if (request.method == "GET" && request.url.startsWith("/terms")) {
+    getTerms(request, response);
   } else if (request.method == "GET" && request.url.startsWith("/static/")) {
     getStatic(request, response);
   } else if  (request.method == "GET" && request.url == "/get_last_position") {

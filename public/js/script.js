@@ -2,7 +2,12 @@
 const points = [];
 getPoints()
 let cameraMode = "bus";
-const map = L.map("map").setView([-9.0461518, -42.6935003], 13);
+const map = L.map("map",{
+  minZoom: 13,
+  maxZoom: 18,
+  zoomSnap: .1,
+  wheelDebounceTime: 100,
+}).setView([-9.0461518, -42.6935003], 13);
 let userMarker = null;
 
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -564,11 +569,6 @@ setInterval(function () {
 
 getLastBusPosition()
 document.addEventListener("DOMContentLoaded", function () {
-  var loader = document.getElementById("load-div");
-  loader.style.opacity = "0";
-  setTimeout(function() {
-    loader.remove();
-  }, 6000); 
 
 
   setTimeout(() => { //pop up inicial
